@@ -34,6 +34,8 @@ const currentlyInfectedEstimate = (data) => {
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** powerFactor);
 };
 
+// CHALLENGE TWO
+
 const severeCasesByRequestedTime = (data) => {
   // destructure requested time from input data
   const { periodType } = data;
@@ -71,6 +73,7 @@ const hospitalBedsByRequestedTime = (data) => {
   severeImpact.hospitalBedsByRequestedTime = Math.round(availableBeds - severeImpact.severeCasesByRequestedTime);
 };
 
+// CHALLENGE THREE
 const casesForICUByRequestedTime = () => {
   // cases for ICU
   impact.casesForICUByRequestedTime = Math.round(impact.severeCasesByRequestedTime * (5 / 100));
