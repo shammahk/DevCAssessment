@@ -22,13 +22,13 @@ const currentlyInfectedEstimate = (data) => {
   // calculate currently infected individuals for impact object
   impact.currentlyInfected = reportedCases * 10;
 
-  // calculate projected number of infected individuals after 30 days for impact object
+  // calculate projected number of infected individuals after estimate Time for impact object
   impact.infectionsByRequestedTime = (impact.currentlyInfected * (2 ** powerFactor));
 
   // calculate currently infected individuals for severe impact object
   severeImpact.currentlyInfected = reportedCases * 50;
 
-  // calculate projected number of infected individuals after 30 days for severe impact object
+  // calculate projected number of infected individuals after estimate Time for severe impact object
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** powerFactor);
 };
 
