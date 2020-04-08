@@ -5,24 +5,45 @@ const severeImpact = {};
 
 const currentlyInfectedEstimate = (data) => {
   // destructure reported cases from input data
+  const { periodType } = data;
+  let { timeToElapse } = data;
   const { reportedCases } = data;
+
+  if (periodType === 'days') {
+    timeToElapse *= 1;
+  } else if (periodType === 'weeks') {
+    timeToElapse *= 7;
+  } else if (periodType === 'months') {
+    timeToElapse *= 30;
+  }
+
+  const powerFactor = Math.round(timeToElapse / 3);
 
   // calculate currently infected individuals for impact object
   impact.currentlyInfected = reportedCases * 10;
 
   // calculate projected number of infected individuals after 30 days for impact object
-  impact.infectionsByRequestedTime = (impact.currentlyInfected * (2 ** 10));
+  impact.infectionsByRequestedTime = (impact.currentlyInfected * (2 ** powerFactor));
 
   // calculate currently infected individuals for severe impact object
   severeImpact.currentlyInfected = reportedCases * 50;
 
   // calculate projected number of infected individuals after 30 days for severe impact object
-  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** 10);
+  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** powerFactor);
 };
 
 const severeCasesByRequestedTime = (data) => {
   // destructure requested time from input data
-  const { timeToElapse } = data;
+  const { periodType } = data;
+  let { timeToElapse } = data;
+
+  if (periodType === 'days') {
+    timeToElapse *= 1;
+  } else if (periodType === 'weeks') {
+    timeToElapse *= 7;
+  } else if (periodType === 'months') {
+    timeToElapse *= 30;
+  }
 
   const powerFactor = Math.round(timeToElapse / 3);
 
