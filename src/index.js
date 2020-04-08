@@ -14,10 +14,10 @@ let data = {
     avgDailyIncomePopulation: 0.71
   },
   periodType: 'days',
-  timeToElapse: 58,
-  reportedCases: 674,
-  population: 66622705,
-  totalHospitalBeds: 1380614
+  timeToElapse: 0,
+  reportedCases: 0,
+  population: 0,
+  totalHospitalBeds: 0
 };
 
 const populateInfo = (information) => {

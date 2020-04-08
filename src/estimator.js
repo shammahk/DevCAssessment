@@ -3,6 +3,8 @@
 const impact = {};
 const severeImpact = {};
 
+// CHALLENGE ONE
+
 const currentlyInfectedEstimate = (data) => {
   // destructure reported cases from input data
   const { periodType } = data;
