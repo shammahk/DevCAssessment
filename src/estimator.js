@@ -52,11 +52,11 @@ const severeCasesByRequestedTime = (data) => {
   const powerFactor = Math.round(timeToElapse / 3);
 
   // calculate cases by requested time
-  impact.severeCasesByRequestedTime = Math.round((15 / 100) * impact.currentlyInfected * (2 ** powerFactor));
+  impact.severeCasesByRequestedTime = Math.trunc((15 / 100) * impact.currentlyInfected * (2 ** powerFactor));
 
   // calculate cases by requested time
   // eslint-disable-next-line max-len
-  severeImpact.severeCasesByRequestedTime = Math.round((15 / 100) * (severeImpact.currentlyInfected * (2 ** powerFactor)));
+  severeImpact.severeCasesByRequestedTime = Math.trunc((15 / 100) * (severeImpact.currentlyInfected * (2 ** powerFactor)));
 };
 
 const hospitalBedsByRequestedTime = (data) => {
@@ -66,29 +66,29 @@ const hospitalBedsByRequestedTime = (data) => {
   const availableBeds = (35 / 100) * totalHospitalBeds;
 
   // available beds after severe cases are admitted
-  impact.hospitalBedsByRequestedTime = Math.round(availableBeds - impact.severeCasesByRequestedTime);
+  impact.hospitalBedsByRequestedTime = Math.trunc(availableBeds - impact.severeCasesByRequestedTime);
 
   // available beds after severe cases are admitted
   // eslint-disable-next-line max-len
-  severeImpact.hospitalBedsByRequestedTime = Math.round(availableBeds - severeImpact.severeCasesByRequestedTime);
+  severeImpact.hospitalBedsByRequestedTime = Math.trunc(availableBeds - severeImpact.severeCasesByRequestedTime);
 };
 
 // CHALLENGE THREE
 const casesForICUByRequestedTime = () => {
   // cases for ICU
-  impact.casesForICUByRequestedTime = Math.round(impact.severeCasesByRequestedTime * (5 / 100));
+  impact.casesForICUByRequestedTime = Math.trunc(impact.severeCasesByRequestedTime * (5 / 100));
 
   // cases for ICU
-  severeImpact.casesForICUByRequestedTime = Math.round(severeImpact.severeCasesByRequestedTime * (5 / 100));
+  severeImpact.casesForICUByRequestedTime = Math.trunc(severeImpact.severeCasesByRequestedTime * (5 / 100));
 };
 
 const casesForVentilatorsByRequestedTime = () => {
   // cases for ICU
-  impact.casesForVentilatorsByRequestedTime = Math.round(impact.severeCasesByRequestedTime * (2 / 100));
+  impact.casesForVentilatorsByRequestedTime = Math.trunc(impact.severeCasesByRequestedTime * (2 / 100));
 
   // cases for ICU
   // eslint-disable-next-line max-len
-  severeImpact.casesForVentilatorsByRequestedTime = Math.round(severeImpact.severeCasesByRequestedTime * (2 / 100));
+  severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(severeImpact.severeCasesByRequestedTime * (2 / 100));
 };
 
 const dollarsInFlight = (data) => {
@@ -97,9 +97,9 @@ const dollarsInFlight = (data) => {
   const { timeToElapse } = data;
 
   // how much money the economy is likely to lose over the said period.
-  impact.dollarsInFlight = Math.round((impact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse);
+  impact.dollarsInFlight = (impact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse;
 
-  severeImpact.dollarsInFlight = Math.round((severeImpact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse);
+  severeImpact.dollarsInFlight = (severeImpact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse;
 };
 
 const covid19ImpactEstimator = (data) => {
