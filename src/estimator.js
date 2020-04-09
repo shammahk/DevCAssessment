@@ -7,15 +7,16 @@ const severeImpact = {};
 
 const currentlyInfectedEstimate = (data) => {
   // destructure reported cases from input data
-  const { reportedCases, timeToElapse, periodType } = data;
+  const { reportedCases, periodType } = data;
+  let { timeToElapse } = data;
 
-  if (periodType === 'days') {
-    data.timeToElapse = timeToElapse * 1;
-  } else if (periodType === 'weeks') {
-    data.timeToElapse = timeToElapse * 7;
+  if (periodType === 'weeks') {
+    timeToElapse *= 7;
   } else if (periodType === 'months') {
-    data.timeToElapse = timeToElapse * 30;
+    timeToElapse *= 30;
   }
+
+  data.timeToElapse = timeToElapse;
 
   const powerFactor = Math.round(timeToElapse / 3);
 
@@ -86,9 +87,9 @@ const dollarsInFlight = (data) => {
   const { timeToElapse } = data;
 
   // how much money the economy is likely to lose over the said period.
-  impact.dollarsInFlight = (impact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse;
+  impact.dollarsInFlight = ((impact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse).toFixed(2);
 
-  severeImpact.dollarsInFlight = (severeImpact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse;
+  severeImpact.dollarsInFlight = ((severeImpact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse).toFixed(2);
 };
 
 const covid19ImpactEstimator = (data) => {
