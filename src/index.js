@@ -73,6 +73,7 @@ const populateInfo = (information) => {
 
 function calculate() {
   const information = impact(data);
+  console.log(data.timeToElapse);
 
   populateInfo(information);
 }
