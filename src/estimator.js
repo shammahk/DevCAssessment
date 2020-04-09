@@ -12,7 +12,9 @@ const currentlyInfectedEstimate = (data) => {
 
   if (periodType === 'weeks') {
     timeToElapse *= 7;
-  } else if (periodType === 'months') {
+  }
+
+  if (periodType === 'months') {
     timeToElapse *= 30;
   }
 
