@@ -55,7 +55,7 @@ const hospitalBedsByRequestedTime = (data) => {
   const { totalHospitalBeds } = data;
 
   // available beds based on 35% deficit
-  const availableBeds = (35 / 100) * totalHospitalBeds;
+  const availableBeds = Math.trunc((35 / 100) * totalHospitalBeds);
 
   // available beds after severe cases are admitted
   impact.hospitalBedsByRequestedTime = Math.trunc(availableBeds - impact.severeCasesByRequestedTime);
@@ -68,19 +68,19 @@ const hospitalBedsByRequestedTime = (data) => {
 // CHALLENGE THREE
 const casesForICUByRequestedTime = () => {
   // cases for ICU
-  impact.casesForICUByRequestedTime = Math.trunc(impact.severeCasesByRequestedTime * (5 / 100));
+  impact.casesForICUByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * (5 / 100));
 
   // cases for ICU
-  severeImpact.casesForICUByRequestedTime = Math.trunc(severeImpact.severeCasesByRequestedTime * (5 / 100));
+  severeImpact.casesForICUByRequestedTime = Math.trunc(severeImpact.infectionsByRequestedTime * (5 / 100));
 };
 
 const casesForVentilatorsByRequestedTime = () => {
   // cases for ICU
-  impact.casesForVentilatorsByRequestedTime = Math.trunc(impact.severeCasesByRequestedTime * (2 / 100));
+  impact.casesForVentilatorsByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * (2 / 100));
 
   // cases for ICU
   // eslint-disable-next-line max-len
-  severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(severeImpact.severeCasesByRequestedTime * (2 / 100));
+  severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(severeImpact.infectionsByRequestedTime * (2 / 100));
 };
 
 const dollarsInFlight = (data) => {
