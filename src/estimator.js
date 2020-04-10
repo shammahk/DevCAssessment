@@ -20,7 +20,7 @@ const currentlyInfectedEstimate = (data) => {
 
   data.timeToElapse = timeToElapse;
 
-  const powerFactor = timeToElapse / 3;
+  const powerFactor = Math.trunc(timeToElapse / 3);
 
   // calculate currently infected individuals for impact object
   impact.currentlyInfected = reportedCases * 10;
@@ -41,7 +41,7 @@ const severeCasesByRequestedTime = (data) => {
   // destructure requested time from input data
   const { timeToElapse } = data;
 
-  const powerFactor = timeToElapse / 3;
+  const powerFactor = Math.trunc(timeToElapse / 3);
 
   // calculate cases by requested time
   impact.severeCasesByRequestedTime = Math.trunc((15 / 100) * impact.currentlyInfected * (2 ** powerFactor));
