@@ -55,7 +55,7 @@ const hospitalBedsByRequestedTime = (data) => {
   const { totalHospitalBeds } = data;
 
   // available beds based on 35% deficit
-  const availableBeds = Math.trunc((35 / 100) * totalHospitalBeds);
+  const availableBeds = (35 / 100) * totalHospitalBeds;
 
   // available beds after severe cases are admitted
   impact.hospitalBedsByRequestedTime = Math.trunc(availableBeds - impact.severeCasesByRequestedTime);
