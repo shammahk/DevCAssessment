@@ -89,9 +89,9 @@ const dollarsInFlight = (data) => {
   const { timeToElapse } = data;
 
   // how much money the economy is likely to lose over the said period.
-  impact.dollarsInFlight = ((impact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse).toFixed(2);
+  impact.dollarsInFlight = Math.trunc((impact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse);
 
-  severeImpact.dollarsInFlight = ((severeImpact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse).toFixed(2);
+  severeImpact.dollarsInFlight = Math.trunc((severeImpact.infectionsByRequestedTime * region.avgDailyIncomePopulation) * region.avgDailyIncomeInUSD * timeToElapse);
 };
 
 const covid19ImpactEstimator = (data) => {
