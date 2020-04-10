@@ -18,6 +18,8 @@ const currentlyInfectedEstimate = (data) => {
     timeToElapse *= 30;
   }
 
+  data.timeToElapse = timeToElapse;
+
   const powerFactor = Math.round(timeToElapse / 3);
 
   // calculate currently infected individuals for impact object
@@ -37,18 +39,7 @@ const currentlyInfectedEstimate = (data) => {
 
 const severeCasesByRequestedTime = (data) => {
   // destructure requested time from input data
-  const { periodType } = data;
-  let { timeToElapse } = data;
-
-  if (periodType === 'weeks') {
-    timeToElapse *= 7;
-  }
-
-  if (periodType === 'months') {
-    timeToElapse *= 30;
-  }
-
-  data.timeToElapse = timeToElapse;
+  const { timeToElapse } = data;
 
   const powerFactor = Math.round(timeToElapse / 3);
 
