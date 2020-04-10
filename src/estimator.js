@@ -20,19 +20,19 @@ const currentlyInfectedEstimate = (data) => {
 
   data.timeToElapse = timeToElapse;
 
-  const powerFactor = Math.round(timeToElapse / 3);
+  const powerFactor = timeToElapse / 3;
 
   // calculate currently infected individuals for impact object
   impact.currentlyInfected = reportedCases * 10;
 
   // calculate projected number of infected individuals after estimate Time for impact object
-  impact.infectionsByRequestedTime = (impact.currentlyInfected * (2 ** powerFactor));
+  impact.infectionsByRequestedTime = Math.trunc(impact.currentlyInfected * (2 ** powerFactor));
 
   // calculate currently infected individuals for severe impact object
   severeImpact.currentlyInfected = reportedCases * 50;
 
   // calculate projected number of infected individuals after estimate Time for severe impact object
-  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** powerFactor);
+  severeImpact.infectionsByRequestedTime = Math.trunc(severeImpact.currentlyInfected * (2 ** powerFactor));
 };
 
 // CHALLENGE TWO
@@ -41,7 +41,7 @@ const severeCasesByRequestedTime = (data) => {
   // destructure requested time from input data
   const { timeToElapse } = data;
 
-  const powerFactor = Math.round(timeToElapse / 3);
+  const powerFactor = timeToElapse / 3;
 
   // calculate cases by requested time
   impact.severeCasesByRequestedTime = Math.trunc((15 / 100) * impact.currentlyInfected * (2 ** powerFactor));
